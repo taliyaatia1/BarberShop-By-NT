@@ -48,7 +48,7 @@ public class fragment_booking extends Fragment implements ITimeSlotLoadListener 
         public void onReceive(Context context, Intent intent) {
             Calendar date = Calendar.getInstance();
             date.add(Calendar.DATE, 0);
-            loadAvailableTimeSlotOfBarber(Common.currentBarber.getBarberID(), simpleDateFormat.format(date.getTime()));
+//            loadAvailableTimeSlotOfBarber(Common.currentBarber.getBarberID(), simpleDateFormat.format(date.getTime()));
         }
     };
     private RecyclerView recycler_time_slot;
@@ -86,7 +86,7 @@ public class fragment_booking extends Fragment implements ITimeSlotLoadListener 
     public void onSelected(Calendar date, int position) {
         if (selected_date.getTimeInMillis() != date.getTimeInMillis()) {
             selected_date = date;
-            loadAvailableTimeSlotOfBarber(Common.currentBarber.getBarberID(), simpleDateFormat.format(date.getTime()));
+            //loadAvailableTimeSlotOfBarber(Common.currentBarber.getBarberID(), simpleDateFormat.format(date.getTime()));
         }
     }
 
@@ -104,8 +104,8 @@ public class fragment_booking extends Fragment implements ITimeSlotLoadListener 
 
     @Override
     public void onTimeSlotLoadSuccess(List<TimeSlot> timeSlotList) {
-        MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getContext(), timeSlotList);
-        recycler_time_slot.setAdapter(adapter);
+//        MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getContext(), timeSlotList);
+//        recycler_time_slot.setAdapter(adapter);
         dialog.dismiss();
         // Handle success
     }
@@ -121,39 +121,39 @@ public class fragment_booking extends Fragment implements ITimeSlotLoadListener 
 
     @Override
     public void onTimeSlotLoadEmpty() {
-        MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getContext());
-        recycler_time_slot.setAdapter(adapter);
-        dialog.dismiss();
+//        MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getContext());
+//        recycler_time_slot.setAdapter(adapter);
+//        dialog.dismiss();
         // Handle empty
     }
 
     private void loadAvailableTimeSlotOfBarber(String barberId, final String bookDate) {
         // Corrected dialog showing and fetching logic here
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference barberDocRef = db.collection("BarberShop").document("BarberShop")
-                .collection("Branch").document(Common.currentBarber.getBarberId());
-
-        barberDocRef.collection(bookDate).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    List<TimeSlot> timeSlots = new ArrayList<>();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        timeSlots.add(document.toObject(TimeSlot.class));
-                    }
-                    if (timeSlots.size() > 0) {
-                        fragment_booking.this.onTimeSlotLoadSuccess(timeSlots);
-                    } else {
-                        fragment_booking.this.onTimeSlotLoadEmpty();
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                fragment_booking.this.onTimeSlotLoadFailed(e.getMessage());
-            }
-        });
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        DocumentReference barberDocRef = db.collection("BarberShop").document("BarberShop")
+//                .collection("Branch").document(Common.currentBarber.getBarberId());
+//
+//        barberDocRef.collection(bookDate).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    List<TimeSlot> timeSlots = new ArrayList<>();
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        timeSlots.add(document.toObject(TimeSlot.class));
+//                    }
+//                    if (timeSlots.size() > 0) {
+//                        fragment_booking.this.onTimeSlotLoadSuccess(timeSlots);
+//                    } else {
+//                        fragment_booking.this.onTimeSlotLoadEmpty();
+//                    }
+//                }
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                fragment_booking.this.onTimeSlotLoadFailed(e.getMessage());
+//            }
+//        });
     }
 }

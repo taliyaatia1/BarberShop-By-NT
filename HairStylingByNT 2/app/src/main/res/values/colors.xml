@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorBackground">#FDF9EE</color>
     <color name="HomeColor">#D7D7D7</color>
+    <color name="green">#8AE91F</color>
+    <color name="colorAccent">#DF4B40</color>
 </resources>

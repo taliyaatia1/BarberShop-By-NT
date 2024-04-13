@@ -21,4 +21,12 @@
     <string name="price_list">Price List</string>
     <string name="available">Available</string>
     <string name="_9_00_9_30">9:00 - 9:30</string>
+    <string name="time_slot_successfull">Time slot is updated successfully!</string>
+    <string name="error">Error</string>
+    <string name="are_you_sure_barber">Are you sure you want to block this slot?</string>
+    <string name="are_you_sure_client">Are you sure you want to schedule appointment in this time?</string>
+    <string name="alarm">Alram!</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="staff">Staff</string>
 </resources>

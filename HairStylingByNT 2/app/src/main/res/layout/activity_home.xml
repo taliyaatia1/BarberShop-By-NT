@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     tools:context=".HomeActivity">
 
@@ -17,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/HomeColor"
+            android:background="@drawable/home_bck_7"
             android:orientation="vertical"
             tools:context=".fragment_home">
 
